@@ -1,0 +1,39 @@
+# redis配置 - 支持自动适配单节点和集群模式
+spring:
+  data:
+    redis:
+      # 连接超时时间（毫秒）
+      timeout: 1000
+      password: RedisPass#2025
+      database: 0
+
+#      # 单机配置 - 当cluster.nodes为空时自动使用单机模式（作为回退选项）
+#      host: 10.10.2.187
+#      port: 7001
+      # 集群配置 - 当配置了nodes时自动使用集群模式，注释掉表示使用单机模式
+      cluster:
+        nodes: #10.10.2.187:7001,10.10.2.187:7002,10.10.2.187:7003
+          - 10.10.2.187:7001
+          - 10.10.2.187:7002
+          - 10.10.2.187:7003
+          - 10.10.2.187:7004
+          - 10.10.2.187:7005
+          - 10.10.2.187:7006
+        max-redirects: 3
+      # 禁用集群拓扑刷新
+      refresh:
+        adaptive: false
+        period: 0
+
+      ###连接池配置###
+      lettuce:
+        pool:
+          max-active: 8     # 最大连接数
+          max-idle: 8       # 最大空闲连接
+          min-idle: 0       # 最小空闲连接
+          max-wait: -1ms    # 获取连接最大等待时间
+
+# 开启redis监听
+redis:
+  listener:
+    enable: true

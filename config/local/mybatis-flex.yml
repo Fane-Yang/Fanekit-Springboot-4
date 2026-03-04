@@ -1,0 +1,45 @@
+mybatis-flex:
+  mapper-locations:
+    - classpath:mapper/**/*.xml
+    # 排除不需要的 mapper 文件
+    - "!classpath:mapper/miniuser/**/*.xml"
+  configuration:
+    map-underscore-to-camel-case: true
+    jdbc-type-for-null: null
+    auto-mapping-behavior: full
+    auto-mapping-unknown-column-behavior: none
+    cache-enabled: false
+  global-config:
+    deleted-value-of-logic-delete: "0" # 逻辑删除的值，表示未删除
+    normal-value-of-logic-delete: "1" # 逻辑删除的值，表示已删除
+
+  # 这里是多数据源解决方案，单数据源也可以使用这个配置
+  datasource: #
+    master: # 主数据源
+      type: com.zaxxer.hikari.HikariDataSource  #
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://10.10.2.187:5432/test
+      username: test
+      password: zfmGzbKEFHhnhZdd
+      pool-name: Hikari_primary  #
+      minimum-idle: 5  #
+      idle-timeout: 600000  #
+      maximum-pool-size: 10  #
+      auto-commit: true  #
+      max-lifetime: 1800000  #
+      connection-timeout: 30000  #
+      connection-test-query: SELECT 1  #
+#    db2: # 从数据源  这是数据源的名字，可以根据名字指定使用的数据源
+#      type: com.zaxxer.hikari.HikariDataSource  #
+#      driver-class-name: com.mysql.cj.jdbc.Driver  #
+#      url: jdbc:mysql://10.10.2.187:54/test
+#      username: test
+#      password: r66KP_.TKh2Erb_GMPB
+#      pool-name: Hikari_preview  #
+#      minimum-idle: 5  #
+#      idle-timeout: 600000  #
+#      maximum-pool-size: 10  #
+#      auto-commit: true  #
+#      max-lifetime: 1800000  #
+#      connection-timeout: 30000  #
+#      connection-test-query: SELECT 1  #

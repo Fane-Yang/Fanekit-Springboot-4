@@ -1,0 +1,99 @@
+# Kafka配置 - 支持生产者、消费者和管理员配置
+spring:
+  kafka:
+    # Kafka集群地址，多个地址用逗号分隔
+#    bootstrap-servers: 10.10.2.187:9092
+    bootstrap-servers: 10.10.2.187:19092,10.10.2.187:29092,10.10.2.187:39092
+    # bootstrap-servers: kafka1:9092,kafka2:9092,kafka3:9092
+
+    # 生产者配置
+    producer:
+      # 重试次数
+      retries: 3
+      # 批处理大小（字节）
+      batch-size: 16384
+      # 批处理延迟时间
+      linger-ms: 5ms
+      # 缓冲区大小（字节）
+      buffer-memory: 33554432
+      # 键序列化器
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 值序列化器（与KafkaTemplate<String,String>匹配）
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 确认模式：all（所有副本确认）、1（leader确认）、0（不等待确认）
+      acks: all
+      # 额外的生产者配置
+      properties:
+        # 启用幂等性
+        enable.idempotence: true
+        # 最大并行请求数
+        max.in.flight.requests.per.connection: 5
+        # 压缩类型：none、gzip、snappy、lz4、zstd
+        compression.type: gzip
+        # 如需自定义分区器，请提供有效实现类；默认不指定，防止类不存在
+        # partitioner.class: com.example.kafka.CustomPartitioner
+
+    # 消费者配置
+    consumer:
+      # 消费者组ID（按需设置）
+      # group-id: fanekit-local
+      # 自动提交偏移量 - 手动确认模式下必须设置为false
+      enable-auto-commit: false
+      # 自动提交间隔（手动确认无效，保留以备切换）
+      auto-commit-interval: 5s
+      # 偏移量重置策略：latest、earliest、none
+      auto-offset-reset: latest
+      # 键/值反序列化器 - 使用错误处理包装器
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      # 最大拉取记录数
+      max-poll-records: 500
+      # 额外的消费者底层属性
+      properties:
+        # 实际反序列化器委托
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        # JSON反序列化器配置
+        spring.json.trusted.packages: "*"
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: java.lang.String
+        # 会话/心跳超时（底层Kafka属性，使用ms）
+        session.timeout.ms: 30000
+        heartbeat.interval.ms: 3000
+        # 最大拉取字节数
+        max.partition.fetch.bytes: 1048576
+
+    # 管理员配置
+    admin:
+      # 操作超时时间
+      operation-timeout: 30s
+      # 额外的管理员配置
+      properties:
+        # 连接最大空闲时间
+        connections.max.idle.ms: 300000
+
+    # 监听器配置
+    listener:
+      # 确认模式：record、batch、time、count、count_time、manual、manual_immediate
+      ack-mode: manual_immediate
+      # 并发级别
+      concurrency: 1
+      # 轮询超时
+      poll-timeout: 3s
+      # 容器类型：SINGLE 或 BATCH
+      type: SINGLE
+
+    # 全局额外配置
+    properties:
+      # 安全协议：PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL
+      security.protocol: PLAINTEXT
+      # 客户端ID
+      client.id: fanekit-client
+      # 连接最大空闲时间
+      connections.max.idle.ms: 540000
+#    #    # Kafka主题配置示例（可选，通过KafkaAdmin自动创建主题）
+#    topics:
+#      test-topic:
+#        name: test-topic
+#        partitions: 60
+#        replication-factor: 1

@@ -1,0 +1,8 @@
+# 雪花算法配置
+fanekit:
+  snowflake:
+    # 数据中心ID (0-3)
+    datacenter-id: 0
+    # 机器ID (0-31)
+    machine-id: 0
+    group-id: GROUP_ID_${fanekit.snowflake.datacenter-id:0}_${fanekit.snowflake.machine-id:1}

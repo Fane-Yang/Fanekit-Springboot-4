@@ -1,0 +1,27 @@
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    # 根据knife4j.enable来控制是否启用swagger-ui
+    enabled: ${knife4j.enable:false}
+  api-docs:
+    path: /v3/api-docs
+    # 根据knife4j.enable来控制是否启用api-docs
+    enabled: ${knife4j.enable:false}
+
+# 文档统一控制开关，增强配置。
+knife4j:
+  enable: true
+  # 开启生产环境屏蔽,开启后禁止访问
+#  production: false
+#
+#  setting:
+#    language: zh_cn
+#    # 配置密码保护
+#    auth:
+#  basic:
+#    enable: false # 是否启用密码控制
+#    username: admin  # 设置用户名
+#    password: admin # 设置密码

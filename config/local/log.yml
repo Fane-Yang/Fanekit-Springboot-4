@@ -1,0 +1,5 @@
+fanekit:
+  log:
+    # 指定日志级别，有效值：TRACE, DEBUG, INFO, WARN, ERROR
+    level: DEBUG
+    path: ./logs
