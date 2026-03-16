@@ -1,4 +1,4 @@
-//package com.fanekit.app.service
+//package com.fanekit.service.app.service
 //
 //import com.fanekit.components.spring.data.kafka.producer.KafkaProducer
 //import lombok.RequiredArgsConstructor

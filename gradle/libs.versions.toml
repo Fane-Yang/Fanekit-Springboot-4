@@ -50,6 +50,7 @@ sshj = "0.40.0"
 zip4j = "2.11.5"
 # kafka-clients
 kafka-clients = "4.2.0"
+sa-token = "1.45.0"
 
 # BouncyCastle 加密库 (用于 SM2/SM3 等国密算法)
 bouncycastle = "1.81"
@@ -135,6 +136,12 @@ spring-boot-configuration-processor = { module = "org.springframework.boot:sprin
 hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikariCP" }
 # 解决ORACLE字符集不支持导致的错误
 orai18n = { module = "com.oracle.database.nls:orai18n", version.ref = "orai18n" }
+#// Source: https://mvnrepository.com/artifact/cn.dev33/sa-token-spring-boot4-starter
+#implementation("cn.dev33:sa-token-spring-boot4-starter:1.45.0")
+sa-token-spring-boot4-starter = { module = "cn.dev33:sa-token-spring-boot4-starter", version.ref = "sa-token" }
+# 响应式WebFlux需要使用下面这个
+sa-token-reactor-spring-boot4-starter = { module = "cn.dev33:sa-token-reactor-spring-boot4-starter", version.ref = "sa-token" }
+sa-token-redis-template = { module = "cn.dev33:sa-token-redis-template", version.ref = "sa-token" }
 
 
 # auth0-java-jwt 依赖，用于JWT认证

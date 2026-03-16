@@ -5,18 +5,18 @@ plugins {
     alias(libs.plugins.spring.dependency.management)
 }
 
-group = "com.fanekit.app"
+group = "com.fanekit.service.app"
 version = "1.0.0"
 
 tasks.jar {
     // 设置生成的 JAR 文件名
-    archiveBaseName.set("fanekit-app")
+    archiveBaseName.set("fanekit-service-app")
 }
 
 tasks.bootJar {
     // 设置重复处理策略，排除重复的条目
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    archiveBaseName.set("fanekit-app")
+    archiveBaseName.set("fanekit-service-app")
 }
 java {
     toolchain {
@@ -40,12 +40,14 @@ dependencies {
     implementation(projects.fanekitCommon.excel)
     implementation(projects.fanekitCommon.quartz)
     implementation(projects.fanekitCommon.ip)
+    implementation(projects.fanekitCommon.saToken)
 
     implementation(projects.fanekitCommon.apiDocs)
     implementation(projects.fanekitCommon.log)
     implementation(projects.fanekitData.db)
     implementation(projects.fanekitData.kafka)
     implementation(projects.fanekitData.redis)
+
 
     // Lombok（编译期使用，运行时不会影响）
     compileOnly(libs.lombok)

@@ -1,5 +1,6 @@
-package com.fanekit.app.task
+package com.fanekit.service.app.task
 
+import cn.dev33.satoken.SaManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
@@ -19,5 +20,6 @@ class StartupRunner(private val applicationContext: ApplicationContext) : Applic
         } else {
             log.info("当前运行环境: 生产环境: $env")
         }
+//        log.info("启动成功，Sa-Token 配置如下：" + SaManager.getConfig());
     }
 }

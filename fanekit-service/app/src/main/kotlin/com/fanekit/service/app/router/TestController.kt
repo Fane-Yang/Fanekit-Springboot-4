@@ -1,4 +1,4 @@
-package com.fanekit.app.router
+package com.fanekit.service.app.router
 
 import com.fanekit.common.core.api.ApiResponse
 import io.swagger.v3.oas.annotations.Operation

@@ -49,6 +49,8 @@ include(
     // ---- 复杂的定时任务模块，支持记录定时任务执行日志等 ---------
 //    ":fanekit-components:quartz",
 
-    // ---- app 业务模块(后续考虑拆分为API模块、业务逻辑模块等细分模块) -----------
-    ":fanekit-app",
+    // ---- app 业务模块(TODO考虑拆分为API模块、业务逻辑模块等细分模块) -----------
+    ":fanekit-service",
+//    程序入口模块
+    ":fanekit-service:app",
 )

@@ -1,8 +1,9 @@
-package com.fanekit.app
+package com.fanekit.service.app
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.http.HttpLogging
 
 @SpringBootApplication
 @ComponentScan(basePackages = ["com.fanekit"])

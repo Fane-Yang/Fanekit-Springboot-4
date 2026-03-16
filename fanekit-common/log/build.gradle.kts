@@ -19,4 +19,7 @@ dependencies {
     implementation(libs.lombok)
     // 基础依赖
     implementation(libs.logback)
+
+    // Compile-time only Jakarta Servlet API to satisfy CommonsRequestLoggingFilter's supertype (Filter)
+    compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
 }

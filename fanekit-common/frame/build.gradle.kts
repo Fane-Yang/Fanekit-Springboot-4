@@ -12,6 +12,7 @@ tasks.jar {
 }
 dependencies {
     api(libs.spring.boot.starter.webflux)
+    api(libs.spring.boot.configuration.processor)
     api(libs.jackson.module.kotlin)
     api(libs.reactor.kotlin.extensions)
     api(libs.kotlin.reflect)
