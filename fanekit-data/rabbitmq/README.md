@@ -1,3 +1,1 @@
-
-TODO 
-rabbitmq模块待完成
+service包中是在application中的使用方式

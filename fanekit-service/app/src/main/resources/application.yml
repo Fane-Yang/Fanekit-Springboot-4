@@ -15,6 +15,7 @@ spring:
       - file:config/${spring.profiles.active}/snowflake.yml
       - file:config/${spring.profiles.active}/log.yml
       - file:config/${spring.profiles.active}/sa-token.yml
+      - file:config/${spring.profiles.active}/rabbitmq.yml
   mvc:
     path-match:
       matching-strategy: ant_path_matcher

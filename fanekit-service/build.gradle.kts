@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
+    application
 }
-
+// 打包时的程序名和版本号
+val buildProjectName = "application"
 group = "com.fanekit.service"
 version = "1.0.0"
 

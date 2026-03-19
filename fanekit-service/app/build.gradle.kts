@@ -47,6 +47,7 @@ dependencies {
     implementation(projects.fanekitData.db)
     implementation(projects.fanekitData.kafka)
     implementation(projects.fanekitData.redis)
+    implementation(projects.fanekitData.rabbitmq)
 
 
     // Lombok（编译期使用，运行时不会影响）

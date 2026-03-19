@@ -1,0 +1,23 @@
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    # 虚拟主机，默认为 /，建议不同环境使用不同 vhost
+    virtual-host: ${RABBITMQ_VIRTUAL_HOST:/}
+    listener:
+      simple:
+        # 手动确认模式，配合 AbstractRabbitMqListener 使用
+        acknowledge-mode: manual
+        # 预取数量，避免一次处理太多消息
+        prefetch: 1
+        default-requeue-rejected: false
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+        multiplier: 1.0
+        max-interval: 10000ms
+

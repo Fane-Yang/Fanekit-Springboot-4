@@ -13,18 +13,15 @@ tasks.jar {
 }
 
 dependencies {
-    // Spring Boot Data Redis 相关
-    api(libs.spring.boot.starter.data.redis)
+    // Spring Boot AMQP (RabbitMQ) Related
+    api(libs.spring.boot.starter.amqp)
 
-    // Jedis 连接池
-    api(libs.jedis)
-
-    // 连接池
-    api(libs.commons.pool2)
-
-    // FastJSON2 序列化
+    // FastJSON2 Serialization
     api(libs.fastjson2)
     api(libs.fastjson2.kotlin)
+
+    // Jackson for RabbitMQ Message Converter
+//    implementation(libs.jackson.module.kotlin)
 
     // Spring Boot 自动装配相关
     implementation(libs.spring.boot.autoconfigure)

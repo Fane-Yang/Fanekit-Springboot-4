@@ -20,13 +20,13 @@ class MyFilter : WebFilter {
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
         println("进入自定义过滤器")
 
-        try {
-            StpUtil.checkLogin()
-        } catch (e: Exception) {
-            exchange.response.statusCode = HttpStatus.UNAUTHORIZED
-            ApiResponse.error(ErrorCodes.TOKEN_INVALID, ErrorCodes.defaultMessages[ErrorCodes.TOKEN_INVALID])
-            return chain.filter(exchange)
-        }
+//        try {
+//            StpUtil.checkLogin()
+//        } catch (e: Exception) {
+//            exchange.response.statusCode = HttpStatus.UNAUTHORIZED
+//            ApiResponse.error(ErrorCodes.TOKEN_INVALID, ErrorCodes.defaultMessages[ErrorCodes.TOKEN_INVALID])
+//            return chain.filter(exchange)
+//        }
 
         try {
             // 先 set 上下文，再调用 Sa-Token 同步 API，并在 finally 里清除上下文
