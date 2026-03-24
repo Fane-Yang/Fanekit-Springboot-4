@@ -1,13 +1,13 @@
 package com.fanekit.service.app.controller
 
 
-import cn.dev33.satoken.`fun`.SaRetGenericFunction
 import cn.dev33.satoken.reactor.context.SaReactorHolder
 import cn.dev33.satoken.stp.StpUtil
-import cn.dev33.satoken.util.SaResult
+import com.alibaba.fastjson2.JSON
 import com.fanekit.common.core.api.ApiResponse
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
@@ -53,5 +53,11 @@ class DemoController(
         return SaReactorHolder.sync {
             ApiResponse.success("当前会话是否登录：" + StpUtil.isLogin())
         }
+    }
+
+    @PostMapping("/echo")
+    fun echo(@RequestBody data: Map<String, Any>): Mono<ApiResponse> {
+        println("这里是打印测试" + JSON.toJSONString(data))
+        return Mono.just(ApiResponse.success())
     }
 }
