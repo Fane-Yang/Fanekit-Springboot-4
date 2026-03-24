@@ -42,7 +42,7 @@ object ExcelUtils {
         startRow: Int = 0,
         includeSuperClass: Boolean = false
     ) {
-        _root_ide_package_.com.fanekit.common.excel.writer.ExcelWriter.write(
+        ExcelWriter.write(
             list, clazz, filePath, userTitle, applyColumnValidation,
             applyCellStyles, sheetName, sheetIndex, startRow,includeSuperClass
         )
@@ -66,7 +66,7 @@ object ExcelUtils {
         sheetName: String? = null,
         includeSuperClass: Boolean = false
     ): List<T> {
-        return _root_ide_package_.com.fanekit.common.excel.reader.ExcelReader.read(
+        return ExcelReader.read(
             filePath, 
             clazz, 
             startLine, 
@@ -91,12 +91,12 @@ object ExcelUtils {
      * @param includeSuperClass 是否包含父类字段，默认false
      */
     fun <T : Any> writeBig(
-        dataProvider: com.fanekit.common.excel.provider.DataProvider<T>,
+        dataProvider: DataProvider<T>,
         clazz: Class<T>,
         filePath: String,
         batchSize: Int = 100,
         userTitle: String = "标题",
-        callback: com.fanekit.common.excel.callback.WriteProgressCallback? = null,
+        callback: WriteProgressCallback? = null,
         applyColumnValidation: Boolean = true,
         applyCellStyles: Boolean = true,
         sheetName: String? = null,
@@ -104,7 +104,7 @@ object ExcelUtils {
         startRow: Int = 0,
         includeSuperClass: Boolean = false
     ) {
-        _root_ide_package_.com.fanekit.common.excel.writer.ExcelWriter.writeBig(
+        ExcelWriter.writeBig(
             dataProvider, clazz, filePath, batchSize, userTitle,
             callback, applyColumnValidation, applyCellStyles,
             sheetName, sheetIndex, startRow, includeSuperClass
@@ -129,14 +129,14 @@ object ExcelUtils {
         filePath: String,
         clazz: Class<T>,
         batchSize: Int = 100,
-        callback: com.fanekit.common.excel.callback.ReadProgressCallback<T>? = null,
+        callback: ReadProgressCallback<T>? = null,
         startLine: Int = 2,
         maxFileSize: Int = 50 * 1024 * 1024,
         sheetIndex: Int? = null,
         sheetName: String? = null,
         includeSuperClass: Boolean = false
     ) {
-        _root_ide_package_.com.fanekit.common.excel.reader.ExcelReader.readBig(
+        ExcelReader.readBig(
             filePath, clazz, batchSize, callback, startLine,
             maxFileSize, sheetIndex, sheetName, includeSuperClass
         )
@@ -149,8 +149,8 @@ object ExcelUtils {
      * @param filePath Excel文件路径
      * @return Sheet信息列表
      */
-    fun getSheetInfo(filePath: String): List<com.fanekit.common.excel.model.SheetInfo> {
-        return _root_ide_package_.com.fanekit.common.excel.reader.ExcelReader.getSheetInfo(filePath)
+    fun getSheetInfo(filePath: String): List<SheetInfo> {
+        return ExcelReader.getSheetInfo(filePath)
     }
 
     /**
@@ -159,7 +159,7 @@ object ExcelUtils {
      * @return Sheet总数
      */
     fun getSheetCount(filePath: String): Int {
-        return _root_ide_package_.com.fanekit.common.excel.reader.ExcelReader.getSheetCount(filePath)
+        return ExcelReader.getSheetCount(filePath)
     }
 
     /**
@@ -169,7 +169,7 @@ object ExcelUtils {
      * @return 是否创建成功
      */
     fun createExcelFile(filePath: String, sheetNames: List<String> = listOf("Sheet1")): Boolean {
-        return _root_ide_package_.com.fanekit.common.excel.writer.ExcelWriter.createExcelFile(filePath, sheetNames)
+        return ExcelWriter.createExcelFile(filePath, sheetNames)
     }
 
     /**
@@ -179,7 +179,7 @@ object ExcelUtils {
      * @return 是否添加成功
      */
     fun addSheetToExistingFile(filePath: String, sheetName: String): Boolean {
-        return _root_ide_package_.com.fanekit.common.excel.writer.ExcelWriter.addSheetToExistingFile(filePath, sheetName)
+        return ExcelWriter.addSheetToExistingFile(filePath, sheetName)
     }
 
     // ========== 便捷方法 ==========

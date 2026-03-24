@@ -13,11 +13,9 @@ tasks.jar {
 dependencies {
     // 基础依赖
     implementation(libs.logback)// 所有子依赖禁止再次依赖
-    // 依赖核心模块，并且禁止二次依赖
-//    implementation(projects.fanekitCommon.core)
 
     // Apache POI - Excel文件处理
-    implementation("org.apache.poi:poi:5.4.1")
-    implementation("org.apache.poi:poi-ooxml:5.4.1")
-    implementation("org.apache.poi:poi-scratchpad:5.4.1")
+    implementation(libs.poi)
+    implementation(libs.poi.ooxml)
+    implementation(libs.poi.scratchpad)
 }

@@ -5,6 +5,7 @@ import java.lang.reflect.Method
 
 /**
  * 数据源路由策略
+ * 可以自定义主从分离或读写分离策略
  */
 class DataSourceRoutingStrategy : DataSourceShardingStrategy {
     private val update = arrayOf<String?>("insert", "delete", "update")
