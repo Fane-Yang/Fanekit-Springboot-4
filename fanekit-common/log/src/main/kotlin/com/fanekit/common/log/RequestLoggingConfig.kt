@@ -2,6 +2,8 @@ package com.fanekit.common.log
 
 import org.reactivestreams.Publisher
 import org.slf4j.LoggerFactory
+import org.springframework.core.Ordered
+import org.springframework.core.annotation.Order
 import org.springframework.core.io.buffer.DataBuffer
 import org.springframework.core.io.buffer.DataBufferUtils
 import org.springframework.http.server.reactive.ServerHttpRequest
@@ -17,9 +19,10 @@ import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
 import java.util.concurrent.atomic.AtomicReference
 
+@Order(Ordered.HIGHEST_PRECEDENCE)
 class RequestResponseLoggingFilter : WebFilter {
 
-    private val logger = LoggerFactory.getLogger(RequestResponseLoggingFilter::class.java)
+    private val log = LoggerFactory.getLogger(RequestResponseLoggingFilter::class.java)
 
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
         val startTime = System.currentTimeMillis()
@@ -114,7 +117,7 @@ class RequestResponseLoggingFilter : WebFilter {
         sb.append("请求总耗时: ").append(duration).append("ms\n")
         sb.append("=== 请求响应处理完成 ===")
 
-        logger.info(sb.toString())
+        log.info(sb.toString())
     }
 
     private fun getClientIp(request: ServerHttpRequest): String {
